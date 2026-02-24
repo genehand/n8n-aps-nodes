@@ -397,7 +397,10 @@ export class ApsDataManagement implements INodeType {
 					requestOptions = {
 						...requestOptions,
 						url: `${BASE_URL}/oss/v2/buckets`,
-						qs: { region, limit },
+						headers: {
+							region
+						},
+						qs: { limit }
 					};
 				} else if (operation === 'createBucket') {
 					const newBucketKey = this.getNodeParameter('newBucketKey', i) as string;
@@ -410,10 +413,10 @@ export class ApsDataManagement implements INodeType {
 							bucketKey: newBucketKey,
 							policyKey,
 						},
-						qs: { region },
 						json: true,
 						headers: {
 							'Content-Type': 'application/json',
+							region,
 						},
 					};
 				} else if (operation === 'getBucketDetails') {
