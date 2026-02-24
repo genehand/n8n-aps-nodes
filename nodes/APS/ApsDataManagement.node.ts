@@ -398,6 +398,7 @@ export class ApsDataManagement implements INodeType {
 						...requestOptions,
 						url: `${BASE_URL}/oss/v2/buckets`,
 						headers: {
+							Accept: 'application/vnd.api+json, application/json;q=0.9',
 							region,
 						},
 						qs: { limit },
