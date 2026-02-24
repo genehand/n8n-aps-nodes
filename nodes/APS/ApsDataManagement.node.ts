@@ -398,9 +398,9 @@ export class ApsDataManagement implements INodeType {
 						...requestOptions,
 						url: `${BASE_URL}/oss/v2/buckets`,
 						headers: {
-							region
+							region,
 						},
-						qs: { limit }
+						qs: { limit },
 					};
 				} else if (operation === 'createBucket') {
 					const newBucketKey = this.getNodeParameter('newBucketKey', i) as string;
@@ -486,6 +486,8 @@ export class ApsDataManagement implements INodeType {
 						url: `${BASE_URL}/oss/v2/buckets/${encodeURIComponent(bucketKey)}/objects/${encodeURIComponent(objectName)}/copyTo/${encodeURIComponent(newObjectName)}`,
 					};
 				}
+
+				console.log(`[APS Debug] Request options: ${JSON.stringify(requestOptions, null, 2)}`);
 
 				const response = await this.helpers.requestWithAuthentication.call(
 					this,
