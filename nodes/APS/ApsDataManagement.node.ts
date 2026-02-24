@@ -496,6 +496,11 @@ export class ApsDataManagement implements INodeType {
 					requestOptions,
 				);
 
+				console.log(`[APS Debug] Response received for operation: ${operation}`);
+				console.log(
+					`[APS Debug] Response: ${typeof response === 'string' ? response : JSON.stringify(response, null, 2)}`,
+				);
+
 				let body = response as any;
 				if (typeof body === 'string') {
 					try {
